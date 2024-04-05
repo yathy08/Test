@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Assistance</title>
+    <style>
+        /* Basic CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            background-image: url(https://images.pexels.com/photos/6843857/pexels-photo-6843857.jpeg?auto=compress&cs=tinysrgb&w=7200);
+            background-size: cover;
+            background-position: 100%;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.0005); 
+          backdrop-filter: blur(5px);
+          color: #131313;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #131313;
+        }
+        input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #928888;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Request Assistance</h1>
+        <form id="assistanceForm">
+            <select id="resourceType" required>
+                <option value="" disabled selected>Select Resource Type</option>
+                <option value="General">Blankets</option>
+<option value="Shelter">Tents</option>
+<option value="Shelter">Sleeping Bags</option>
+<option value="Medical">First Aid Kits</option>
+<option value="Medical">Hygiene Products</option>
+<option value="Tools">Flashlights</option>
+<option value="Tools">Batteries</option>
+<option value="Power">Power Generators</option>
+<option value="Communication">Communication Devices</option>
+<option value="General">Clothing</option>
+<option value="Shelter">Tarps</option>
+<option value="Power">Fuel</option>
+<option value="Water">Water Filters</option>
+<option value="Safety">Fire Extinguishers</option>
+<option value="Communication">Radios</option>
+<option value="Medical">Diapers</option>
+<option value="Shelter">Portable Toilets</option>
+<option value="Shelter">Mosquito Nets</option>
+<option value="Tools">Compasses</option>
+<option value="Medical">Hand Sanitizer</option>
+<option value="Power">Solar Chargers</option>
+<option value="General">Books</option>
+<option value="Medical">Insect Repellent</option>
+<option value="Medical">N95 Masks</option>
+<option value="Tools">Waterproof Matches</option>
+<option value="Tools">Candles</option>
+<option value="Medical">Sunscreen</option>
+<option value="Medical">Feminine Hygiene Products</option>
+<option value="Tools">Hand Warmers</option>
+<option value="Tools">Ice Melt</option>
+<option value="Tools">Chain Saws</option>
+<option value="Medical">Dust Masks</option>
+<option value="Tools">Duct Tape</option>
+<option value="Fuel">Firewood</option>
+<option value="Tools">Portable Stoves</option>
+<option value="General">Rain Gear</option>
+<option value="Medical">Surgical Masks</option>
+<option value="General">Towels</option>
+<option value="Food">Pet Food</option>
+<option value="Tools">Gloves</option>
+<option value="Tools">Can Openers</option>
+<option value="Medical">Ice Packs</option>
+<option value="Tools">Shovels</option>
+<option value="Fuel">Propane</option>
+<option value="Water">Water Purification Tablets</option>
+<option value="Shelter">Plastic Sheeting</option>
+<option value="Tools">Drones</option>
+<option value="Communication">Walkie-Talkies</option>
+<option value="Medical">Stretchers</option>
+<option value="Safety">Life Jackets</option>
+<option value="Safety">Life Rafts</option>
+<option value="Communication">Hand Crank Radios</option>
+<option value="Safety">Emergency Whistles</option>
+<option value="Power">Solar Lights</option>
+<option value="Shelter">Emergency Blankets</option>
+<option value="Tools">Multitools</option>
+<option value="Food">Emergency Rations</option>
+<option value="Safety">Flares</option>
+<option value="Safety">Reflective Vests</option>
+<option value="Tools">Utility Knives</option>
+<option value="Safety">Whistles</option>
+<option value="Tools">Headlamps</option>
+<option value="General">Ponchos</option>
+<option value="Tools">Matches</option>
+<option value="Tools">Rope</option>
+<option value="Safety">Safety Goggles</option>
+<option value="General">Waterproof Bags</option>
+<option value="Tools">Emergency Hammers</option>
+<option value="Safety">Signal Mirrors</option>
+<option value="General">Survival Kits</option>
+<option value="Food">Emergency Food Bars</option>
+<option value="Water">Water Purifiers</option>
+<option value="Tools">Compasses</option>
+<option value="Tools">Paracord</option>
+<option value="Tools">Lighters</option>
+<option value="Safety">Safety Harnesses</option>
+<option value="Tools">Emergency Crank Flashlights</option>
+<option value="Power">Solar Panels</option>
+<option value="Communication">Walkie-Talkies</option>
+<option value="Communication">Weather Radios</option>
+<option value="General">Emergency Response Guides</option>
+<option value="Shelter">Emergency Shelters</option>
+<option value="Power">Portable Chargers</option>
+<option value="General">Weatherproof Paper</option>
+<option value="Tools">Fire Starters</option>
+<option value="Safety">Signal Flares</option>
+<option value="General">Emergency Ponchos</option>
+<option value="Medical">Heat Packs</option>
+<option value="Safety">Safety Whistles</option>
+<option value="General">Emergency Backpacks</option>
+<option value="Safety">Emergency Whistles</option>
+<option value="Shelter">Thermal Blankets</option>
+<option value="Tools">Folding Shovels</option>
+<option value="Water">Water Storage Containers</option>
+<option value="Food">Non-perishable Foods</option>
+<option value="Water">Water Bottles</option>
+<option value="Water">Collapsible Water Containers</option>
+<option value="Power">Solar Shower Bags</option>
+<option value="Water">Bottled Water</option>
+<option value="Food">Canned Food</option>
+
+            </select>
+            <input id="quantity" type="number" placeholder="Quantity" required>
+            <textarea id="additionalComment" placeholder="Additional Comments"></textarea>
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('assistanceForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get form values
+            var resourceType = document.getElementById('resourceType').value;
+            var quantity = document.getElementById('quantity').value;
+            var additionalComment = document.getElementById('additionalComment').value;
+
+            // Create data object to send to the server
+            var requestData = {
+                resourceType: resourceType,
+                quantity: quantity,
+                additionalComment: additionalComment // corrected field name
+            };
+
+            // Send data to the server
+            fetch('/api/RequestAssistance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle success response from the server
+                console.log(data); // Log the response
+                alert('Assistance request submitted successfully');
+                // You can redirect or perform any other action here after successful submission
+            })
+           
+        });
+    </script>
+</body>
+</html>

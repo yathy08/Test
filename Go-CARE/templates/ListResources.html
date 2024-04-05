@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Directory</title>
+    <style>
+        /* Basic CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #333;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .resource {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-left: 4px solid #28a745;
+        }
+        .resource h3 {
+            margin-top: 0;
+        }
+        .resource p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resource Directory</h1>
+        <input type="text" id="searchInput" placeholder="Search">
+        <select id="resourceType">
+            <option value="" disabled selected>Filter by Resource Type</option>
+            <option value="shelter">Shelter</option>
+            <option value="food-bank">Food Bank</option>
+            <option value="water">Water</option>
+            <option value="medical-supplies">Medical Supplies</option>
+            <option value="temporary-housing">Temporary Housing</option>
+            <option value="cleanup-and-repair">Cleanup and Repair Supplies</option>
+            <option value="volunteer-assistance">Volunteer Assistance</option>
+            <option value="financial-aid">Financial Aid</option>
+            <option value="power-generators">Power Generators</option>
+            <option value="communication">Communication</option>
+        </select>
+        <select id="quantitySelect">
+            <option value="" disabled selected>Filter by Quantity</option>
+            <option value="150">150 or more</option>
+            <option value="200">200 or more</option>
+            <option value="250">250 or more</option>
+            <option value="300">300 or more</option>
+        </select>
+        <div id="resourceList"></div>
+    </div>
+
+    <script>
+        const resources = [
+            { name: "Blankets and Beds", type: "shelter", availability: true, quantity: 200 },
+            { name: "Food Bank", type: "food-bank", availability: false, quantity: 0 },
+            { name: "Water", type: "water", availability: true, quantity: 180 },
+            { name: "Medical Supplies", type: "medical-supplies", availability: true, quantity: 270 },
+            { name: "Temporary Housing", type: "temporary-housing", availability: false, quantity: 0 },
+            { name: "Cleanup and Repair Supplies", type: "cleanup-and-repair", availability: true, quantity: 220 },
+            { name: "Volunteer Assistance", type: "volunteer-assistance", availability: true, quantity: 190 },
+            { name: "Financial Aid", type: "financial-aid", availability: false, quantity: 0 },
+            { name: "Power Generators", type: "power-generators", availability: true, quantity: 280 },
+            { name: "Communication Devices", type: "communication", availability: true, quantity: 200 },
+            { name: "Tents", type: "shelter", availability: true, quantity: 250 },
+            { name: "Sleeping Bags", type: "shelter", availability: true, quantity: 300 },
+            { name: "Canned Food", type: "food-bank", availability: false, quantity: 0 },
+            { name: "Bottled Water", type: "water", availability: true, quantity: 200 },
+            { name: "First Aid Kits", type: "medical-supplies", availability: true, quantity: 280 },
+            { name: "Hygiene Products", type: "medical-supplies", availability: true, quantity: 150 },
+            { name: "Shelters", type: "shelter", availability: true, quantity: 170 },
+            { name: "Protein Bars", type: "food-bank", availability: false, quantity: 0 },
+            { name: "Clothing", type: "shelter", availability: true, quantity: 300 },
+            { name: "Flashlights", type: "cleanup-and-repair", availability: true, quantity: 150 },
+            { name: "Batteries", type: "power-generators", availability: false, quantity: 0 },
+            { name: "Tarps", type: "cleanup-and-repair", availability: true, quantity: 250 },
+            { name: "Generators", type: "power-generators", availability: true, quantity: 280 },
+            { name: "Backpacks", type: "shelter", availability: false, quantity: 0 },
+            { name: "Cots", type: "temporary-housing", availability: true, quantity: 200 },
+            { name: "Meal Kits", type: "food-bank", availability: false, quantity: 0 },
+            { name: "Water Filters", type: "water", availability: true, quantity: 170 },
+            { name: "Fire Extinguishers", type: "cleanup-and-repair", availability: true, quantity: 300 },
+            { name: "Fuel", type: "power-generators", availability: false, quantity: 0 },
+            { name: "Radios", type: "communication", availability: true, quantity: 220 },
+            { name: "Towels", type: "shelter", availability: false, quantity: 0 },
+            { name: "Diapers", type: "medical-supplies", availability: true, quantity: 250 },
+            { name: "Pet Food", type: "food-bank", availability: false, quantity: 0 },
+            { name: "Duct Tape", type: "cleanup-and-repair", availability: true, quantity: 300 },
+            { name: "Gloves", type: "cleanup-and-repair", availability: true, quantity: 180 },
+            { name: "Firewood", type: "cleanup-and-repair", availability: false, quantity: 0 },
+            { name: "Hand Sanitizer", type: "medical-supplies", availability: true, quantity: 200 },
+            { name: "Portable Stoves", type: "cleanup-and-repair", availability: true, quantity: 220 },
+            { name: "Solar Chargers", type: "power-generators", availability: false, quantity: 0 },
+            { name: "Books", type: "shelter", availability: true, quantity: 300 },
+            { name: "Insect Repellent", type: "medical-supplies", availability: true, quantity: 180 },
+            { name: "Chain Saws", type: "cleanup-and-repair", availability: false, quantity: 0 },
+            { name: "N95 Masks", type: "medical-supplies", availability: true, quantity: 200 },
+            { name: "Waterproof Matches", type: "cleanup-and-repair", availability: true, quantity: 250 },
+            { name: "Candles", type: "cleanup-and-repair", availability: true, quantity: 280 },
+            { name: "Can Openers", type: "food-bank", availability: false, quantity: 0 },
+            { name: "Sunscreen", type: "medical-supplies", availability: true, quantity: 170 },
+            { name: "Portable Toilets", type: "cleanup-and-repair", availability: false, quantity: 0 },
+            { name: "Mosquito Nets", type: "shelter", availability: true, quantity: 250 },
+            { name: "Plastic Sheeting", type: "cleanup-and-repair", availability: true, quantity: 150 },
+            { name: "Compasses", type: "cleanup-and-repair", availability: true, quantity: 300 },
+            { name: "Rain Gear", type: "shelter", availability: false, quantity: 0 },
+            { name: "Surgical Masks", type: "medical-supplies", availability: true, quantity: 170 },
+            { name: "Feminine Hygiene Products", type: "medical-supplies", availability: true, quantity: 200 },
+            { name: "Dust Masks", type: "medical-supplies", availability: false, quantity: 0 },
+            { name: "Hand Warmers", type: "shelter", availability: true, quantity: 280 },
+            { name: "Ice Melt", type: "cleanup-and-repair", availability: true, quantity: 180 },
+            { name: "Portable Radios", type: "communication", availability: false, quantity: 0 },
+        ];
+
+        // Function to filter resources based on search query, resource type, and quantity
+        function filterResources() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const resourceType = document.getElementById("resourceType").value;
+            const selectedQuantity = document.getElementById("quantitySelect").value;
+
+            const filteredResources = resources.filter(resource => {
+                return resource.name.toLowerCase().includes(searchInput) &&
+                    (resourceType === "" || resource.type === resourceType) &&
+                    (selectedQuantity === "" || resource.quantity >= parseInt(selectedQuantity));
+            });
+
+            displayResources(filteredResources);
+        }
+
+        // Function to display resources
+        function displayResources(resources) {
+            const resourceList = document.getElementById("resourceList");
+            resourceList.innerHTML = "";
+            resources.forEach(resource => {
+                const availability = resource.availability ? "Available" : "Not Available";
+                const resourceDiv = document.createElement("div");
+                resourceDiv.classList.add("resource");
+                resourceDiv.innerHTML = `
+                    <h3>${resource.name}</h3>
+                    <p>Availability: ${availability}</p>
+                    <p>Quantity: ${resource.quantity}</p>
+                `;
+                resourceList.appendChild(resourceDiv);
+            });
+        }
+
+        // Event listener for search input and resource type select
+        document.getElementById("searchInput").addEventListener("input", filterResources);
+        document.getElementById("resourceType").addEventListener("change", filterResources);
+        document.getElementById("quantitySelect").addEventListener("change", filterResources);
+
+        // Initial display of resources
+        filterResources();
+    </script>
+</body>
+</html>
